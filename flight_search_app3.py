@@ -5,7 +5,7 @@ import pandas as pd
 import time
 import streamlit as st
 import logging
-
+import random
 # Configure logging (this is a basic configuration; it can be customized)
 logging.basicConfig(level=logging.ERROR)
 
@@ -292,7 +292,8 @@ def main():
                     temp_df = temp_dfx
                 else:
                     temp_df = pd.concat([temp_df, temp_dfx], axis=0, ignore_index=True)
-            time.sleep(0.5)  # Adjust as necessary
+            sleep_t = random.uniform(0.5, 1)
+            time.sleep(sleep_t)  # Adjust as necessary
 
         filtered_df = temp_df[temp_df['Legs'].apply(lambda x: any(acity in leg for leg in x[:-1]))]
         filtered_df = filtered_df.sort_values(by='LowestPrice')
