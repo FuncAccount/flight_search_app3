@@ -4,6 +4,11 @@ from prettytable import PrettyTable
 import pandas as pd
 import time
 import streamlit as st
+import logging
+
+# Configure logging (this is a basic configuration; it can be customized)
+logging.basicConfig(level=logging.ERROR)
+
 st.set_page_config(layout="wide")
 
 pd.set_option('display.max_rows', None)
@@ -176,7 +181,8 @@ def xiecheng2(dcity, acity, date):
     # print(json.loads(response))
     try:
         routeList = json.loads(response)["data"].get('routeList')
-    except:
+    except Exception as e:
+        logging.error("An error occurred", exc_info=True)
         # print('route error' ,dcity, '-',acity )
         progress = 'no flight route on'+ dcity+ '-'+ acity
         return None, progress
