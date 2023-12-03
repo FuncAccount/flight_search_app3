@@ -2,6 +2,4 @@ prettytable
 pandas
 numpy
 streamlit
-json
 requests
-time
