@@ -180,6 +180,7 @@ def xiecheng2(dcity, acity, date):
         # print('route error' ,dcity, '-',acity )
         progress = 'no flight route on'+ dcity+ '-'+ acity
         return None, progress
+    
     table2 = PrettyTable(["LowestPrice", "Airline", "FlightNumber", "Legs","PunctualityRate", "ArrivalDate", "DepartureDate"])
     
     progress = dcity + '------->'+ acity+date
@@ -199,7 +200,6 @@ def xiecheng2(dcity, acity, date):
                 total_price = 0 # This entire block is for flights with transit. So although total_price might seems confusing. It is used to add all the price from each leg together
                 for leg in route.get('legs'):
                     each_flight = leg.get('flight')
-                    each_cabin = leg.get('cabins')
                     leg_city = each_flight.get('arrivalAirportInfo').get('cityName')
                     leg_airport = each_flight.get('arrivalAirportInfo').get('airportName')
                     leg_list.append(leg_city+leg_airport)
@@ -287,8 +287,6 @@ def main():
                 else:
                     temp_df = pd.concat([temp_df, temp_dfx], axis=0, ignore_index=True)
             time.sleep(0.5)  # Adjust as necessary
-
-        # ... Rest of your code for processing and displaying dataframe ...
 
         filtered_df = temp_df[temp_df['Legs'].apply(lambda x: any(acity in leg for leg in x[:-1]))]
         filtered_df = filtered_df.sort_values(by='LowestPrice')
