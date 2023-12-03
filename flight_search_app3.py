@@ -292,7 +292,7 @@ def main():
                     temp_df = temp_dfx
                 else:
                     temp_df = pd.concat([temp_df, temp_dfx], axis=0, ignore_index=True)
-            time.sleep(0.8)  # Adjust as necessary
+            time.sleep(1)  # Adjust as necessary
 
         filtered_df = temp_df[temp_df['Legs'].apply(lambda x: any(acity in leg for leg in x[:-1]))]
         filtered_df = filtered_df.sort_values(by='LowestPrice')
