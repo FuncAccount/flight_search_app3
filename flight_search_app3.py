@@ -177,8 +177,9 @@ def xiecheng2(dcity, acity, date):
     try:
         routeList = json.loads(response)["data"].get('routeList')
     except:
-        print('route error' ,dcity, '-',acity )
-        return None 
+        # print('route error' ,dcity, '-',acity )
+        progress = 'no flight route on'+ dcity+ '-'+ acity
+        return None, progress
     table2 = PrettyTable(["LowestPrice", "Airline", "FlightNumber", "Legs","PunctualityRate", "ArrivalDate", "DepartureDate"])
     
     progress = dcity + '------->'+ acity+date
