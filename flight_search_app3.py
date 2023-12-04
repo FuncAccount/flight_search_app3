@@ -238,13 +238,13 @@ def xiecheng2(dcity, acity, date):
     #     file.write(pretty_route_list)
     
     # Step 1: Extract the column headers
-    headers = table2.field_names
+    dfheaders = table2.field_names
 
     # Step 2: Extract the rows directly
     rows = [list(row) for row in table2._rows]
 
     # Step 3: Create DataFrame
-    df = pd.DataFrame(rows, columns=headers)
+    df = pd.DataFrame(rows, columns=dfheaders)
 
     # display(df)
     return df, progress
