@@ -295,6 +295,7 @@ def main():
             sleep_t = random.uniform(0.5, 1)
             time.sleep(sleep_t)  # Adjust as necessary
 
+
         filtered_df = temp_df[temp_df['Legs'].apply(lambda x: any(acity in leg for leg in x[:-1]))]
         filtered_df = filtered_df.sort_values(by='LowestPrice')
 
